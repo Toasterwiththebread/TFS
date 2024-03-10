@@ -4,11 +4,13 @@ Temporary file storage for downloading files
 # How to use
 Just run with the current Dockerfile and set ENV's to this
 
+```
 MONGODB_URI
 KEY
+```
 
-The MONGODB_URI will be your connection string to the database, eg: mongodb://10.0.0.1:10001
-and the KEY will be your authentication for uploading files, so set it to a password or something secure
+The **MONGODB_URI** will be your connection string to the database, eg: **mongodb://10.0.0.1:10001**
+and the **KEY** will be your authentication for uploading files, so set it to a password or something secure
 
 # How to upload files
 To upload send a POST request like this:
