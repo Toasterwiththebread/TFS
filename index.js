@@ -30,7 +30,7 @@ cron.schedule('*/5 * * * *', () => {
 
 async function deleteOldFiles() {
     console.log("Running file deletion CRON job");
-    const db = client.db("ETFS");
+    const db = client.db("TFS");
     const database_interaction = await db.collection("Files").find({ time_expires: { $lte: Date.now() } }).toArray();
     for (const val of database_interaction) {
         try {
@@ -74,7 +74,7 @@ app.get('/', (req, res) => {
 app.post('/upload', upload.single('file'), async (req, res) => {
     try {
         if (req.query.key === process.env.KEY) {
-            const db = client.db("ETFS");
+            const db = client.db("TFS");
             const id = uuidv4();
             await db.collection("Files").insertOne({ "id": id, "time": Date.now(), "time_expires": Date.now() + 30 * 60000, "location": req.file.filename, "extension": req.file.originalname.split(".").pop(), "original_name": req.file.originalname });
             res.status(200).send({ status: "OK", id: id });
@@ -112,7 +112,7 @@ app.post('/discord', async (req, res) => {
                 .catch((err) => {
                     console.log("Error: ", err);
                 });
-            const db = client.db("ETFS");
+            const db = client.db("TFS");
             await db.collection("Files").insertOne({ "id": id, "time": Date.now(), "time_expires": Date.now() + 30 * 60000, "location": id, "extension": req.body.name.split(".").pop(), "original_name": req.body.name });
             res.status(200).send({ status: "OK", id: id });
         } else {
@@ -127,7 +127,7 @@ app.post('/discord', async (req, res) => {
 
 app.get("/download", async (req, res) => {
     try {
-        const db = client.db("ETFS");
+        const db = client.db("TFS");
         const database_interaction = await db.collection("Files").findOne({ id: req.query.id });
         res.status(200).download(__dirname + "/files/" + database_interaction.location, database_interaction.original_name);
     } catch {
@@ -137,5 +137,5 @@ app.get("/download", async (req, res) => {
 
 
 app.listen(5000, () => {
-    console.log(`ETFS listening on port 5000`);
+    console.log(`TFS listening on port 5000`);
 })
