@@ -1,0 +1,32 @@
+{
+  "name": "eglotfs",
+  "version": "1.0.0",
+  "description": "Temporary file storage for downloading files",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "prod": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EgloDevelopment/EgloTFS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EgloDevelopment/EgloTFS/issues"
+  },
+  "homepage": "https://github.com/EgloDevelopment/EgloTFS#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongodb": "^5.3.0",
+    "multer": "^1.4.5-lts.1",
+    "node-cron": "^3.0.2",
+    "node-fetch": "^2.6.9",
+    "nodemon": "^2.0.22",
+    "split-file": "^2.3.0",
+    "uuid": "^9.0.0"
+  }
+}
